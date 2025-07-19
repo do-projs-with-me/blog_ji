@@ -1,7 +1,7 @@
 import express from 'express'
 import { Request, Response } from 'express';  //we hahve to use this in typescript
 import { PrismaClient } from '@prisma/client';
-import { User } from '../generated/prisma';
+// import { User } from '/generated/prisma';
 
 const prisma = new PrismaClient();
 
