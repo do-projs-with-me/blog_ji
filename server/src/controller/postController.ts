@@ -1,8 +1,7 @@
 import express from 'express'
 import { Request, Response } from 'express'
 import { Prisma, PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient();
+import prisma from '../utils/prisma'
 
 export const createPost = async (req: Request, res: Response) => {
     const { title, content, authorId } = req.body;
