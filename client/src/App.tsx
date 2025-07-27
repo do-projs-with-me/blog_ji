@@ -1,5 +1,5 @@
 
-import {  Route,BrowserRouter as Router,Routes } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './components/Home'
 import SignIn from './components/SignIn'
@@ -13,16 +13,16 @@ function App() {
 
 
   return (
-    
-      <Router>
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/signin' element={<SignIn/>}/>
-          <Route path='/signup' element={<SignUp/>}/>
-          <Route path='createpost' element={<CreatePost/>}/>
-        </Routes>
-      </Router>
+
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='createpost' element={<CreatePost />} />
+      </Routes>
+    </Router>
 
   )
 }
