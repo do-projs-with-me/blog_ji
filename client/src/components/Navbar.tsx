@@ -9,6 +9,7 @@ const Navbar = () => {
                         <li className="on hover:underline on hover:text-gray-300  "><Link to='/'>Home</Link></li>
                         <li className="on hover:underline on hover:text-gray-300"><Link to='/createPost'>Write </Link></li>
                         <li className="on hover:underline on hover:text-gray-300">about us</li>
+                        <li className="on hover:underline on hover:text-gray-300">blogai</li>
                         <li className="bg-blue-800 "><Link to='/signin'>login</Link></li>
                         <li className="bg-blue-800 "><Link to='/signup'>SignUp</Link></li>
                     </ul>

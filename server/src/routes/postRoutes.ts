@@ -3,7 +3,7 @@ import { createPost, deletePost, getAllPost, getPostById, updatePost } from '../
 
 const router=express.Router();
 
-router.post("/",createPost);
+router.post("/createPost",createPost);
 router.put("/updatePost",updatePost)
 router.delete("/deletePost",deletePost)
 router.get("/allPosts",getAllPost)
