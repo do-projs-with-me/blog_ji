@@ -19,7 +19,7 @@ const Navbar = () => {
                 <div className=" bg-black text-white px-4 py-6 font-bold bg-">
                     <ul className="flex justify-end gap-6">
                         <li className="on hover:underline on hover:text-gray-300  "><Link to='/'>Home</Link></li>
-                        <li className="on hover:underline on hover:text-gray-300"><Link to='/createPost'>Write </Link></li>
+                        <li className="on hover:underline on hover:text-gray-300"><Link to='/create-post'>Write </Link></li>
                         <li className="on hover:underline on hover:text-gray-300">about us</li>
                         <li className="on hover:underline on hover:text-gray-300">blogai</li>
                         {isLogin && (

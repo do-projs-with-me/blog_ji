@@ -21,7 +21,7 @@ const CreatePost = () => {
         }
 
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/createPosts`, {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/create-posts`, {
                 title, content,
             },
                 {
