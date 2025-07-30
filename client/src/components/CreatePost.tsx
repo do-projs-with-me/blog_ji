@@ -14,13 +14,14 @@ const CreatePost = () => {
 
     const handleCreatePost = async (e: React.FormEvent) => {
         e.preventDefault();
+        
         if (!title || !content) {
             alert('please enter all the details');
             return;
         }
 
         try {
-            const res = await axios.post('https://localhost:5000/api/createPosts', {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/createPosts`, {
                 title, content,
             },
                 {

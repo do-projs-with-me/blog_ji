@@ -1,6 +1,18 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        setIsLogin(!!user);
+    }, []);
+
+
+
+
     return (
         <>
             <div>
@@ -10,8 +22,15 @@ const Navbar = () => {
                         <li className="on hover:underline on hover:text-gray-300"><Link to='/createPost'>Write </Link></li>
                         <li className="on hover:underline on hover:text-gray-300">about us</li>
                         <li className="on hover:underline on hover:text-gray-300">blogai</li>
-                        <li className="bg-blue-800 "><Link to='/signin'>login</Link></li>
-                        <li className="bg-blue-800 "><Link to='/signup'>SignUp</Link></li>
+                        {isLogin && (
+                            <li className="on hover:underline on hover:text-gray-300">My posts</li>
+                        )}
+                        {!isLogin && (
+                            <>
+                                <li className="bg-blue-800 "><Link to='/signin'>login</Link></li>
+                                <li className="bg-blue-800 "><Link to='/signup'>SignUp</Link></li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>
