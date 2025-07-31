@@ -8,35 +8,40 @@ const SignIn = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!email || !password) {
-            setError('please enter valid details');
-            return;
-        }
-
-        try {
-            const response = await fetch('http://localhost:5000/api/signIn', {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                localStorage.setItem('token', data.token);
-                setError('');
-                alert('success');
-                navigate('/');
+        const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+            if (!email || !password) {
+                setError('please enter valid details');
+                return;
             }
-            else {
-                alert(data.msg || 'invlaid credentials')
+
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/signin`, {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                    credentials:'include'
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    if(data.token){
+                    localStorage.setItem('token', data.token);
+                    }
+                    setError('');
+                    alert('success');
+                    navigate('/');
+                }
+                else {
+                    alert(data.msg || 'invlaid credentials')
+                }
+            } catch (error) {
+                alert(error);
+                console.log(error);
+                
             }
-        } catch (error) {
-            alert(error);
-        }
-    };
+        };
 
     return (
         <>
