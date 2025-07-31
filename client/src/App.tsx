@@ -7,6 +7,7 @@ import SignUp from './components/SignUp'
 import CreatePost from './components/CreatePost'
 import Navbar from './components/Navbar'
 import "./index.css";
+import MyPosts from './components/MyPost'
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='createpost' element={<CreatePost />} />
+        <Route path='/create-post' element={<CreatePost />} />
+        <Route path='/mypost' element={<MyPosts/>}/>
       </Routes>
     </Router>
 
