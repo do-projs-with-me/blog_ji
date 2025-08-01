@@ -1,7 +1,8 @@
 import  express  from "express";
 import cors from "cors";
 import dotenv from "dotenv"
-import router from "./routes/authRoutes";
+import authrouter from "./routes/authRoutes";
+import postrouter from "./routes/postRoutes";
 
 const app=express();
 
@@ -15,7 +16,8 @@ app.use(cors({
     credentials:true
 }));
 app.use(express.json());
-app.use('/api',router)
+app.use('/api',authrouter);
+app.use('/api',postrouter);
 
 app.get('/',(req,res)=>{
     res.send("hello sir lets start ts")
