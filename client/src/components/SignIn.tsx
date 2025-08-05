@@ -16,7 +16,7 @@ const SignIn = () => {
             }
 
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/signin`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/signIn`, {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify({ email, password }),
