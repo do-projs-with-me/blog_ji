@@ -8,6 +8,7 @@ import CreatePost from './components/CreatePost'
 import Navbar from './components/Navbar'
 import "./index.css";
 import MyPosts from './components/MyPost'
+import Hero from './components/Hero'
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Hero/>}/>
+        <Route path='/home' element={<Home />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/create-post' element={<CreatePost />} />
