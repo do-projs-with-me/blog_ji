@@ -2,6 +2,7 @@ import express from 'express'
 import { Request, Response } from 'express';  //we hahve to use this in typescript
 import { PrismaClient } from '@prisma/client';
 import prisma from "../utils/prisma"
+import jwt from 'jsonwebtoken';
 
 
 
@@ -18,16 +19,23 @@ export const signUp = async (req: Request, res: Response) => {
             where: { email }
         });
 
+
         if (userExits) {
             res.status(400).json({ msg: "user already exists" });
             return ; 
         }
 
+
         const newUser = await prisma.user.create({
             data: { username, email, password },
         });
+        //created token so that we can verify
+        const token=jwt.sign({id:newUser.id,email:newUser.email},
+            process.env.JWT_SECRET as string,
+            {expiresIn:"1d"}
+        );
 
-        res.status(201).json({ msg: "user created" });
+        res.status(201).json({ msg: "user created" ,token});
     }
     catch (err) {
         res.status(500).json({ msg: "something wnet wrong", err })
@@ -52,8 +60,16 @@ export const signIn = async (req: Request, res: Response) => {
             res.status(401).json({ msg: "Invalid credentials" });
             return ; 
         }
+        const token=jwt.sign({id:user.id,email:user.email},
+            process.env.JWT_SECRET as string,
+            {expiresIn:"1d"}
+        );
 
-         res.status(200).json({ msg: "Login successful", user });
+         res.status(200).json({ msg: "Login successful",token, user:{
+            id:user.id,
+            email:user.email,
+            username:user.username,
+         } });
          return; 
     } catch (error) {
 

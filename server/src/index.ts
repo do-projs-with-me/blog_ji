@@ -1,17 +1,23 @@
 import  express  from "express";
-// import cors from "cors"
+import cors from "cors";
 import dotenv from "dotenv"
-import router from "./routes/authRoutes";
-import { Prisma } from "@prisma/client";
+import authrouter from "./routes/authRoutes";
+import postrouter from "./routes/postRoutes";
+
 const app=express();
 
 dotenv.config();
-// app.use(cors());
+
 
 const PORT= process.env.PORT || 5000
-
+// app.use(cors());
+app.use(cors({
+    origin:'http://localhost:5173',
+    credentials:true
+}));
 app.use(express.json());
-app.use('/api',router)
+app.use('/api',authrouter);
+app.use('/api',postrouter);
 
 app.get('/',(req,res)=>{
     res.send("hello sir lets start ts")

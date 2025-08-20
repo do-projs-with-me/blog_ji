@@ -18,8 +18,10 @@ export const createPost = async (req: Request, res: Response) => {
             }
         });
         res.status(201).json(post);
-    } catch (error) {
-        res.status(500).json({ msg: "error in creating post" });
+    } catch (error:any) {
+        console.error(error);
+        
+        res.status(500).json({ msg: "error in creating post",error:error.message });
     }
 
 }
@@ -97,7 +99,7 @@ export const getPostById = async (req: Request, res: Response) => {
         const posts = await prisma.post.findUnique({
             where: { id: id },
             include: {
-                user: {
+                author: {
                     select: {
                         id: true,
                         username: true,
@@ -121,7 +123,7 @@ export const getAllPost = async (req: Request, res: Response) => {
     try {
         const posts = await prisma.post.findMany({
             include: {
-                user: {
+                author: {
                     select: {
                         id: true,
                         username: true,
