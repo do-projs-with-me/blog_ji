@@ -72,8 +72,9 @@ export const signIn = async (req: Request, res: Response) => {
          } });
          return; 
     } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Something went wrong", error: (error as Error).message });
+}
 
-        res.status(500).json({ msg: "something wnet wrong", error })
-    }
 
 }

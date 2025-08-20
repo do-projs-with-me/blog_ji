@@ -23,7 +23,17 @@ const SignIn = () => {
                     credentials:'include'
                 });
 
-                const data = await response.json();
+                // const text=await response.text();
+                // console.log(text);
+                
+                // // const data = await response.json();
+                // const data=JSON.parse(text);
+                 let data;
+        try {
+            data = await response.json();
+        } catch (jsonError) {
+            throw new Error('Invalid server response');
+        }
 
                 if (response.ok) {
                     if(data.token){
@@ -31,7 +41,7 @@ const SignIn = () => {
                     }
                     setError('');
                     alert('success');
-                    navigate('/');
+                    navigate('/Home');
                 }
                 else {
                     alert(data.msg || 'invlaid credentials')
