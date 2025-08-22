@@ -16,7 +16,7 @@ const SignIn = () => {
             }
 
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/signIn`, {
+                const response = await fetch("http://localhost:5000/api/signIn", {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify({ email, password }),
@@ -28,10 +28,14 @@ const SignIn = () => {
                 
                 // // const data = await response.json();
                 // const data=JSON.parse(text);
-                 let data;
+                 let data:any;
+                 let text:string;
         try {
-            data = await response.json();
+             text = await response.text(); // get raw text
+    console.log("🔎 Raw response from backend:", text);
+    data = JSON.parse(text);
         } catch (jsonError) {
+            
             throw new Error('Invalid server response');
         }
 

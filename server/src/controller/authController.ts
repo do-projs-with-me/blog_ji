@@ -3,9 +3,10 @@ import { Request, Response } from 'express';  //we hahve to use this in typescri
 import { PrismaClient } from '@prisma/client';
 import prisma from "../utils/prisma"
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv'
 
 
-
+dotenv.config()
 
 export const signUp = async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
