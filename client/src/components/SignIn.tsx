@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 const SignIn = () => {
-
+    const {login}=useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -40,6 +41,7 @@ const SignIn = () => {
         }
 
                 if (response.ok) {
+                    login(data.user);
                     if(data.token){
                     localStorage.setItem('token', data.token);
                     }

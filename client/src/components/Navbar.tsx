@@ -1,21 +1,38 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    setIsLogin(!!user);
-  }, []);
+    const {isLogin,logout}=useAuth();
+    const navigate=useNavigate();
+
+    const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+//   const [isLogin, setIsLogin] = useState(false);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const checkLogin=()=>{
+//     const user = localStorage.getItem("user");
+//     setIsLogin(!!user);
+//     };
+
+//     checkLogin();
+//     window.addEventListener("storage",checkLogin);
+
+//     return ()=>window.removeEventListener("storage",checkLogin);
+
+// },[]);
 
   // for logout created here itself  as it was easy here
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setIsLogin(false);
-    navigate("/"); 
-  };
+//   const handleLogout = () => {
+//     localStorage.removeItem("user");
+//     setIsLogin(false);
+//     navigate("/"); 
+//   };
 
   return (
     <div className="bg-black text-white px-4 py-6 font-bold">
@@ -44,7 +61,7 @@ const Navbar = () => {
         ) : (
           <>
             <li className="bg-blue-800 px-2 rounded hover:bg-blue-600">
-              <Link to="/signin">Login</Link>
+              <Link to="/signin" aria-label="Login">Login</Link>
             </li>
             <li className="bg-blue-800 px-2 rounded hover:bg-blue-600">
               <Link to="/signup">Signup</Link>
