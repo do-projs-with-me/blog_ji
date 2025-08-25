@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 const SignIn = () => {
-
+    const {login}=useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -16,22 +17,37 @@ const SignIn = () => {
             }
 
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/signIn`, {
+                const response = await fetch("http://localhost:5000/api/signIn", {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify({ email, password }),
                     credentials:'include'
                 });
 
-                const data = await response.json();
+                // const text=await response.text();
+                // console.log(text);
+                
+                // // const data = await response.json();
+                // const data=JSON.parse(text);
+                 let data:any;
+                 let text:string;
+        try {
+             text = await response.text(); // get raw text
+    console.log("🔎 Raw response from backend:", text);
+    data = JSON.parse(text);
+        } catch (jsonError) {
+            
+            throw new Error('Invalid server response');
+        }
 
                 if (response.ok) {
+                    login(data.user);
                     if(data.token){
                     localStorage.setItem('token', data.token);
                     }
                     setError('');
                     alert('success');
-                    navigate('/');
+                    navigate('/Home');
                 }
                 else {
                     alert(data.msg || 'invlaid credentials')

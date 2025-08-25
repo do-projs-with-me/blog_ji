@@ -3,9 +3,10 @@ import { Request, Response } from 'express';  //we hahve to use this in typescri
 import { PrismaClient } from '@prisma/client';
 import prisma from "../utils/prisma"
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv'
 
 
-
+dotenv.config()
 
 export const signUp = async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
@@ -72,8 +73,9 @@ export const signIn = async (req: Request, res: Response) => {
          } });
          return; 
     } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Something went wrong", error: (error as Error).message });
+}
 
-        res.status(500).json({ msg: "something wnet wrong", error })
-    }
 
 }

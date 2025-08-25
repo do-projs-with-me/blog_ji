@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import "./index.css";
 import MyPosts from './components/MyPost'
 import Hero from './components/Hero'
+import { AuthProvider } from './AuthContext'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   return (
 
     <Router>
+      <AuthProvider>
       <Navbar />
       <Routes>
         <Route path='/' element={<Hero/>}/>
@@ -26,6 +28,7 @@ function App() {
         <Route path='/create-post' element={<CreatePost />} />
         <Route path='/mypost' element={<MyPosts/>}/>
       </Routes>
+      </AuthProvider>
     </Router>
 
   )

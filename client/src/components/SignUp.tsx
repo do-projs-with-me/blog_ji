@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignIn: React.FC = () => {
 
-    const [name, setName] = useState('');
+    const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -12,7 +12,7 @@ const SignIn: React.FC = () => {
     const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {//here we cannot write simply (e) we have take it from react
         e.preventDefault();
 
-        if (!name || !email || !password) {
+        if (!username || !email || !password) {
             setError('please enter all the fields');
             return;
         }
@@ -21,7 +21,7 @@ const SignIn: React.FC = () => {
             const response = await fetch('http://localhost:5000/api/signUp', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ name: name, email, password })
+                body: JSON.stringify({ username, email, password })
             });
 
             const data = await response.json();
@@ -30,7 +30,7 @@ const SignIn: React.FC = () => {
             if (response.ok) {
                 setError('');
                 alert('success');
-                navigate('/');
+                navigate('/signin');
             }
             else {
                 setError(data.msg || 'failed');
@@ -53,7 +53,7 @@ const SignIn: React.FC = () => {
                         <h2 className="font-semibold b-6 p-2 mb-2 items-center text-center text-2xl">SignUp blog_ji lets write together</h2>
                         <div>
                             <label className="block">username</label>
-                            <input className="border w-full rounded px-3 py-2 mb-4" type="text" placeholder="enter username" required value={name} onChange={(e) => setName(e.target.value)} />
+                            <input className="border w-full rounded px-3 py-2 mb-4" type="text" placeholder="enter username" required value={username} onChange={(e) => setUserName(e.target.value)} />
                         </div>
                         <div>
                             <label>email</label>
