@@ -42,9 +42,9 @@ const CreatePost = () => {
 
 
     return (
-        <>
-            <div>
-                <div className="max-w-4xl mx-auto mt-10 p-4  border rounded-md shadow-md ">
+        
+            <div className="bg-stone-200">
+                <div className="max-w-4xl mx-auto mt-10 p-4  border rounded-md shadow-md  ">
                     <h1 className="text-2xl font font-bold text-gray-800 mt-5 mb-4">weclome to create a new blog </h1>
                     <form className="space-y-4 " onSubmit={handleCreatePost}>
                         <div>
@@ -60,7 +60,7 @@ const CreatePost = () => {
                 </div>
 
             </div>
-        </>
+        
     )
 }
 export default CreatePost;
