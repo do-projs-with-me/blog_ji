@@ -7,6 +7,9 @@ const Navbar = () => {
     const {isLogin,logout}=useAuth();
     const navigate=useNavigate();
 
+    // for making navbar transparent on home page without login
+    const ishero=location.pathname==="/";
+
     const handleLogout = () => {
     logout();
     navigate("/");
@@ -35,22 +38,22 @@ const Navbar = () => {
 //   };
 
   return (
-    <div className="bg-black text-white px-4 py-6 font-bold">
+    <div className={`w-full px-4 py-6 font-bold flex justify-end gap-6 items-center ${ishero ? "bg-transparent absolute  px-4 py-6 z-20":" bg-black text-white px-4 py-6 font-bold"}`}>
       <ul className="flex justify-end gap-6">
    
-        <li className="hover:underline hover:text-gray-300">
+        <li className="text-yellow-200 hover:underline hover:text-gray-300">
           <Link to={isLogin ? "/home" : "/"}>Home</Link>
         </li>
 
-        <li className="hover:underline hover:text-gray-300">
+        <li className="text-yellow-200 hover:underline hover:text-gray-300">
           <Link to="/create-post">Write</Link>
         </li>
-        <li className="hover:underline hover:text-gray-300">About Us</li>
-        <li className="hover:underline hover:text-gray-300">BlogAI</li>
+        <li className=" text-yellow-200 hover:underline hover:text-gray-300">About Us</li>
+        <li className="text-yellow-200 hover:underline hover:text-gray-300">BlogAI</li>
 
         {isLogin ? (
           <>
-            <li className="hover:underline hover:text-gray-300">My Posts</li>
+            <li className="text-yellow-200 hover:underline hover:text-gray-300">My Posts</li>
             <li
               className="cursor-pointer hover:underline hover:text-gray-300"
               onClick={handleLogout}
@@ -60,10 +63,10 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <li className="bg-blue-800 px-2 rounded hover:bg-blue-600">
+            <li className=" text-yellow-200 bg-black px-2 rounded hover:bg-blue-600">
               <Link to="/signin" aria-label="Login">Login</Link>
             </li>
-            <li className="bg-blue-800 px-2 rounded hover:bg-blue-600">
+            <li className="text-yellow-200 bg-black px-2 rounded hover:bg-blue-600">
               <Link to="/signup">Signup</Link>
             </li>
           </>

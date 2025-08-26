@@ -4,9 +4,14 @@ import { Prisma, PrismaClient } from '@prisma/client'
 import prisma from '../utils/prisma'
 
 export const createPost = async (req: Request, res: Response) => {
+    console.log(req.body);
+    
     const { title, content, authorId } = req.body;
-
+    // this is  not an industry standard we have to take it from the jwtmiddleware
+     console.log("📩 Incoming data:", { title, content, authorId });
     try {
+
+
         if (!title || !content || !authorId) {
             res.status(500).json({ msg: "enter valid things" })
             return;
@@ -14,7 +19,9 @@ export const createPost = async (req: Request, res: Response) => {
 
         const post = await prisma.post.create({
             data: {
-                title, content, authorId
+                title, content, author:{
+                    connect:{id:String(authorId)}
+                }
             }
         });
         res.status(201).json(post);

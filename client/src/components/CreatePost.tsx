@@ -21,15 +21,14 @@ const CreatePost = () => {
         }
 
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/create-posts`, {
-                title, content,
-            },
-                {
-                    withCredentials: true,
-                });
+            const authorId=localStorage.getItem("userId");
+
+            const res = await axios.post("http://localhost:5000/api/createPost", {
+                title, content,authorId
+            },);
 
             console.log('post creates', res.data);
-            navigate('/');
+            navigate('/home');
 
 
         } catch (error) {
@@ -47,7 +46,7 @@ const CreatePost = () => {
             <div>
                 <div className="max-w-4xl mx-auto mt-10 p-4  border rounded-md shadow-md ">
                     <h1 className="text-2xl font font-bold text-gray-800 mt-5 mb-4">weclome to create a new blog </h1>
-                    <form className="space-y-4 " onChange={handleCreatePost}>
+                    <form className="space-y-4 " onSubmit={handleCreatePost}>
                         <div>
                             <label className="mt-5 font-bold">Title</label>
                             <input className="w-full px-4 py-2 border rounded-xl mt-1 mb-4 " type="text" placeholder="enter the title of blog" min={10} value={title} onChange={(e) => setTitle(e.target.value)} />

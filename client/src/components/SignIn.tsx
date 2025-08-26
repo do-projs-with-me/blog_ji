@@ -23,6 +23,7 @@ const SignIn = () => {
                     body: JSON.stringify({ email, password }),
                     credentials:'include'
                 });
+                localStorage.setItem("userId",response.id)
 
                 // const text=await response.text();
                 // console.log(text);
@@ -42,8 +43,10 @@ const SignIn = () => {
 
                 if (response.ok) {
                     login(data.user);
+                    localStorage.setItem('')
                     if(data.token){
                     localStorage.setItem('token', data.token);
+
                     }
                     setError('');
                     alert('success');

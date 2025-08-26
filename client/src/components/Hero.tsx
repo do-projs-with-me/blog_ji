@@ -4,7 +4,7 @@ const Hero = () => {
     const navigate=useNavigate();
     return (
         <div className="relative h-screen w-full overflow-hidden">
-            <video autoPlay loop className="absolute  z-0" src="/background.mp4" >does not support this video </video>
+            <video autoPlay loop muted className="absolute  z-0" src="/background.mp4" >does not support this video </video>
 
 
         <div className="relative z-10 min-h-screen flex items-center justify-center bg-gradient-to-br px-4">
