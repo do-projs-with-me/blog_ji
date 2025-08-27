@@ -11,17 +11,21 @@ const CreatePost = () => {
     const [content, setContent] = useState('');
     const navigate = useNavigate();
 
-
+  
     const handleCreatePost = async (e: React.FormEvent) => {
         e.preventDefault();
+
+          
         
         if (!title || !content) {
             alert('please enter all the details');
             return;
         }
 
+        const authorId=localStorage.getItem("userId");
+
         try {
-            const authorId=localStorage.getItem("userId");
+            
 
             const res = await axios.post("http://localhost:5000/api/createPost", {
                 title, content,authorId

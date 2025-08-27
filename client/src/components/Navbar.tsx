@@ -55,7 +55,7 @@ const Navbar = () => {
           <li className=" hover:underline hover:text-gray-300">
           <Link to="/create-post">Write</Link>
         </li>
-            <li className=" hover:underline hover:text-gray-300">My Posts</li>
+            <li className=" hover:underline hover:text-gray-300"><Link to="/mypost">My Posts</Link></li>
             <li className=" hover:underline hover:text-gray-300">BlogAI</li>
             <li className="  hover:underline hover:text-gray-300">About Us</li>
             <li
