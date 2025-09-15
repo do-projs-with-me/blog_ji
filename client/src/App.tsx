@@ -27,6 +27,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/create-post' element={<CreatePost />} />
         <Route path='/mypost' element={<MyPosts/>}/>
+        <Route path='/postdetails:id' element={<MyPosts/>}/>
       </Routes>
       </AuthProvider>
     </Router>

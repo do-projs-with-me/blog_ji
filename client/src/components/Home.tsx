@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -41,7 +42,8 @@ const Home = () => {
                                     {post.title}
                                 </h2>
                                 <p className="text-gray-700 mb-4">
-                                    {post.content.slice(0, 100)}...<span className="font-bold cursor-pointer">ReadMore</span>
+                                    {post.content.slice(0, 100)}...
+                                    <Link to={`getdetails/${post.id}`}><span className="font-bold cursor-pointer">ReadMore</span></Link>
                                 </p>
                                 <p className="text-sm text-gray-500">
                                     by <span className="text-blue-600 font-medium">{post.author.username}</span>
