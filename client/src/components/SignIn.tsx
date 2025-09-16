@@ -23,6 +23,7 @@ const SignIn = () => {
                     body: JSON.stringify({ email, password }),
                     credentials:'include'
                 });
+                // localStorage.setItem("userId",response.id)
 
                 // const text=await response.text();
                 // console.log(text);
@@ -42,8 +43,10 @@ const SignIn = () => {
 
                 if (response.ok) {
                     login(data.user);
+                    // localStorage.setItem('userId',Response.data.user.id )
                     if(data.token){
                     localStorage.setItem('token', data.token);
+
                     }
                     setError('');
                     alert('success');
@@ -62,7 +65,7 @@ const SignIn = () => {
     return (
         <>
             <div>
-                <div className="flex items-center align-center justify-center min-h-screen bg-gray-100">
+                <div className="flex items-center align-center justify-center min-h-screen bg-stone-200">
                     <form className="w-full items-center justify-center bg-white border-2 shadow-sm max-w-sm rounded-lg p-4" onSubmit={handleSignIn}>
                         <h2 className="font-semibold b-6 p-2 mb-2 items-center text-center text-2xl">SignUp blog_ji lets write together</h2>
                         <div>

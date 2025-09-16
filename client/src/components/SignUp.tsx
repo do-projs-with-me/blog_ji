@@ -45,7 +45,7 @@ const SignIn: React.FC = () => {
     return (
         <>
             <div>
-                <div className="flex items-center align-center justify-center min-h-screen bg-gray-100">
+                <div className="flex items-center align-center justify-center min-h-screen bg-stone-200">
                     <form className="w-full items-center justify-center bg-white border-2 shadow-sm max-w-sm rounded-lg p-4" onSubmit={handleSignIn}>
                         {/* on submit was giving issue here due to e:react.changeEvent<HTMLINPUTELEMENT> this is taking the input 
                         field but we are doing submit here so now we have to make onsumbit for this 

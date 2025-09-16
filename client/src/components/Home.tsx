@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -22,7 +23,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="bg-gray-100 min-h-screen py-10">
+            <div className="bg-stone-100 min-h-screen py-10">
             <div className="max-w-4xl mx-auto px-4">
                 <h1 className="text-4xl font-bold text-center mb-10 text-gray-800">
                     📝 Welcome to Posts
@@ -42,6 +43,7 @@ const Home = () => {
                                 </h2>
                                 <p className="text-gray-700 mb-4">
                                     {post.content.slice(0, 100)}...
+                                    <Link to={`getdetails/${post.id}`}><span className="font-bold cursor-pointer">ReadMore</span></Link>
                                 </p>
                                 <p className="text-sm text-gray-500">
                                     by <span className="text-blue-600 font-medium">{post.author.username}</span>
